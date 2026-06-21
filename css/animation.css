@@ -1,0 +1,107 @@
+/* =====================================================
+   ANIMATIONS — UNDANGAN KHITAN AKSA
+   ===================================================== */
+
+@keyframes loadbar {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(330%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-22px) rotate(6deg); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1.1); }
+  to   { transform: scale(1.22); }
+}
+
+@keyframes scrolldot {
+  0%   { transform: translate(-50%, 0); opacity: 1; }
+  80%  { transform: translate(-50%, 18px); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes ripple {
+  to { transform: scale(3.2); opacity: 0; }
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1); opacity: .8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes wishIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Shimmer for gold titles on hover */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.gold-text { background-size: 200% auto; animation: shimmer 6s linear infinite; }
+
+/* Heartbeat for the profile badge */
+@keyframes beat {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50%      { transform: translateX(-50%) scale(1.12); }
+}
+.profile__badge { animation: beat 2.4s ease-in-out infinite; }
+
+/* Glow breathing for countdown numbers */
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 12px rgba(246,226,168,.25); }
+  50%      { text-shadow: 0 0 22px rgba(246,226,168,.6); }
+}
+.countdown__item span { animation: glow 2.6s ease-in-out infinite; }
+
+/* Soft entrance used as fallback if AOS fails */
+.no-aos [data-aos] { opacity: 1 !important; transform: none !important; }
+
+/* Cover entrance — independent of AOS so the OPEN button always appears */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal-up {
+  opacity: 0;
+  animation: revealUp .9s var(--ease) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+/* Button hover sweep */
+.btn::before {
+  content: ''; position: absolute; top: 0; left: -75%;
+  width: 50%; height: 100%; transform: skewX(-20deg);
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+  transition: left .6s var(--ease);
+}
+.btn:hover::before { left: 125%; }
+
+/* Card lift on hover */
+.glass-card { transition: transform .45s var(--ease), box-shadow .45s var(--ease); }
+.detail-card:hover, .glass-card--intro:hover, .doa-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Gallery overlay icon pop */
+.gallery__item figcaption i { transform: scale(.6); transition: transform .4s var(--ease); }
+.gallery__item:hover figcaption i { transform: scale(1); }
+
+/* Fade + slide for invitation reveal after open */
+.invitation { opacity: 0; transform: translateY(30px); transition: opacity 1s var(--ease) .2s, transform 1s var(--ease) .2s; }
+body.revealed .invitation { opacity: 1; transform: translateY(0); }
+
+/* Floating WA label pulse */
+.fab--wa::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid rgba(37,211,102,.6); animation: pulse 2s ease-out infinite;
+}
